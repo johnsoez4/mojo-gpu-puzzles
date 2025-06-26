@@ -38,6 +38,7 @@ default = { features = ["cuda"] }
 [tasks]
 install-pre-commit = "pre-commit install"
 format = { cmd="mojo format problems solutions", depends-on = ["install-pre-commit"] }
+update = "sh update.sh"
 
 tests = { cmd = "bash solutions/run.sh" }
 memcheck = { cmd = "bash solutions/sanitizer.sh memcheck" }
