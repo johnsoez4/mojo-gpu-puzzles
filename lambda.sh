@@ -94,7 +94,7 @@ setup_symlinks() {
     
     # Define symlinks to create
     declare -A symlinks=(
-        ["/home/ubuntu/.vscode-server"]="/home/ubuntu/dev/.vscode-server/"
+        ["/home/ubuntu/.vscode-server"]="/home/ubuntu/dev/.vscode-server"
         ["/home/ubuntu/.pixi"]="/home/ubuntu/dev/.pixi/"
     )
     
@@ -103,8 +103,15 @@ setup_symlinks() {
     
     for link_path in "${!symlinks[@]}"; do
         target_path="${symlinks[$link_path]}"
-        if create_symlink "$link_path" "$target_path"; then
-            ((success_count++))
+        # Temporarily disable exit on error for symlink creation
+        set +e
+        create_symlink "$link_path" "$target_path"
+        result=$?
+        set -e
+        if [[ $result -eq 0 ]]; then
+            success_count=$((success_count + 1))
+        else
+            print_error "Failed to process symlink: $link_path -> $target_path"
         fi
     done
     
