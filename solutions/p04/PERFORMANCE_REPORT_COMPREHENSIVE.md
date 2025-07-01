@@ -1,5 +1,19 @@
 # Comprehensive Performance Analysis Report: add_10_2d Implementations
 
+## Data Source
+
+The performance data in this report was obtained by running:
+
+**`comprehensive_performance_analysis.mojo`** - This single file generated all the comprehensive performance data:
+
+- **Matrix sizes tested**: 2x2 to 2048x2048 (11 different sizes)
+- **CPU vs GPU comparison data** across all sizes
+- **Throughput measurements** for both CPU and GPU implementations
+- **CPU advantage calculations** (62,000x to 357,000x faster)
+- **Crossover point analysis** (determined no crossover exists)
+
+This script performed 5 benchmark runs per matrix size for both CPU and GPU implementations, providing the extensive dataset that revealed CPU dominates across all tested sizes and identified that no GPU crossover point exists for the simple `add_10_2d` operation.
+
 ## Executive Summary
 
 This comprehensive analysis tested CPU vs GPU performance across matrix sizes from 2x2 to 2048x2048 (4.2M elements) to identify the crossover point where GPU implementations become advantageous. **Surprisingly, no crossover point was found** - the CPU implementation remains dramatically faster across all tested sizes.

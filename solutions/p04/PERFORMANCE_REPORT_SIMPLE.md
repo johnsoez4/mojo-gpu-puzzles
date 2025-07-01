@@ -1,5 +1,22 @@
 # Performance Analysis Report: add_10_2d Implementations
 
+## Data Sources
+
+The performance data in this report was obtained by running the following Mojo files:
+
+1. **`benchmark_add_10_2d.mojo`** - Generated the core 2x2 matrix comparison data:
+   - CPU: 0.049 ms
+   - GPU LayoutTensor: 1.82 ms
+   - GPU UnsafePointer: 2.41 ms
+   - Also provided the numerical validation confirming all implementations produce identical results
+
+2. **`simple_performance_analysis.mojo`** - Generated the CPU scaling analysis table:
+   - Matrix sizes from 2x2 to 64x64
+   - CPU throughput measurements (58.8 to 1,004.4 M elements/ms)
+   - Showed how CPU performance scales with matrix size
+
+The report combines data from both benchmark scripts to provide the comprehensive analysis of CPU vs GPU performance characteristics and the detailed CPU scaling behavior across different matrix sizes.
+
 ## Executive Summary
 
 This report presents a comprehensive performance analysis of three different implementations of the `add_10_2d()` function:
