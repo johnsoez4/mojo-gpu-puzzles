@@ -14,6 +14,17 @@ The performance data in this report was obtained by running:
 
 This script performed 5 benchmark runs per matrix size for both CPU and GPU implementations, providing the extensive dataset that revealed CPU dominates across all tested sizes and identified that no GPU crossover point exists for the simple `add_10_2d` operation.
 
+### Benchmark Methodology Update
+
+**Important**: The benchmark methodology was corrected to ensure fair comparison between CPU and GPU implementations. Both benchmarks now measure equivalent operations:
+
+- **Memory allocation**: UnsafePointer.alloc() calls for input and output buffers
+- **Data initialization**: Setting input_data[i] = i for all elements
+- **Computation execution**: CPU function call or GPU kernel execution
+- **Timing scope**: Starts before memory allocation, ends after computation (before cleanup)
+
+This ensures both CPU and GPU benchmarks include the same overhead components for accurate performance comparison. The corrected methodology shows that memory allocation overhead is minimal for CPU operations compared to GPU overhead.
+
 ## Executive Summary
 
 This comprehensive analysis tested CPU vs GPU performance across matrix sizes from 2x2 to 2048x2048 (4.2M elements) to identify the crossover point where GPU implementations become advantageous. **Surprisingly, no crossover point was found** - the CPU implementation remains dramatically faster across all tested sizes.

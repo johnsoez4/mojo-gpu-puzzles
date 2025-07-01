@@ -44,22 +44,27 @@ fn benchmark_cpu_for_size(size: Int) -> Float64:
     total_time: UInt = 0
 
     for run in range(NUM_BENCHMARK_RUNS):
+        # Start timing before memory allocation (same as GPU benchmark)
+        start_time = now()
+
+        # Memory allocation (equivalent to GPU buffer creation)
         input_data = UnsafePointer[Scalar[dtype]].alloc(size * size)
         output_data = UnsafePointer[Scalar[dtype]].alloc(size * size)
 
-        # Initialize input data
+        # Initialize input data (equivalent to GPU data initialization)
         for i in range(size * size):
             input_data[i] = Scalar[dtype](i)
             output_data[i] = Scalar[dtype](0.0)
 
-        # Measure execution time
-        start_time = now()
+        # CPU execution (equivalent to GPU kernel execution)
         add_10_2d_cpu(output_data, input_data, size)
+
+        # End timing after computation (before cleanup, same as GPU benchmark)
         end_time = now()
 
         total_time += end_time - start_time
 
-        # Clean up memory
+        # Clean up memory (not included in timing, same as GPU benchmark)
         input_data.free()
         output_data.free()
 
