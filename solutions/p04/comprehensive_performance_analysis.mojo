@@ -282,7 +282,6 @@ def main():
 
         # Benchmark GPU UnsafePointer
         gpu_unsafe_time = Float64(0.0)
-        gpu_unsafe_success = False
 
         try:
             gpu_unsafe_time = benchmark_gpu_unsafe_for_size(size)
@@ -293,7 +292,6 @@ def main():
 
         # Benchmark GPU LayoutTensor
         gpu_layout_time = Float64(0.0)
-        gpu_layout_success = False
 
         try:
             gpu_layout_time = benchmark_gpu_layout_tensor_for_size(size)
